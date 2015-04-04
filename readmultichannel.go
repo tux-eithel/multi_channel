@@ -10,8 +10,8 @@ import (
 func initMultiChannel(rows []string, totalRoutine int) {
 
 	// in real case, you don't know the length of rows, but you can "calculate" based on size of file
-	var chanProcess []chan string = make([]chan string, totalRoutine)
-	var chanDati []chan *ToElaborate = make([]chan *ToElaborate, totalRoutine)
+	var chanProcess = make([]chan string, totalRoutine)
+	var chanDati = make([]chan *ToElaborate, totalRoutine)
 
 	smallSize := len(rows) / totalRoutine
 	for i := 0; i < totalRoutine; i++ {
@@ -29,7 +29,7 @@ func initMultiChannel(rows []string, totalRoutine int) {
 	go producerMultiChannelMulti(chanProcess, chanDati, waitProducerMulti)
 
 	var srt string
-	var i int = 0
+	i := 0
 	for _, srt = range rows {
 
 		if len(chanProcess) == i {
@@ -74,7 +74,7 @@ func producerMultiChannel(chanProcess chan string, chanDati []chan *ToElaborate,
 
 	defer waitProducer.Done()
 
-	var i int = 0
+	i := 0
 	var value string
 	var ok bool
 

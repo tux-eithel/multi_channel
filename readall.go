@@ -10,7 +10,7 @@ import (
 func initAll(rows []string, totalRoutine int) {
 
 	// all data is in memory, so it is possible create a channel with the right size
-	var chanDati chan *ToElaborate = make(chan *ToElaborate, len(rows))
+	var chanDati = make(chan *ToElaborate, len(rows))
 
 	waitConsumer := &sync.WaitGroup{}
 	waitConsumer.Add(totalRoutine)

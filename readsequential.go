@@ -9,8 +9,8 @@ import (
 func initSequential(rows []string, totalRoutine int) {
 
 	// in real case, you don't know the length of rows, but you can "calculate" based on size of file
-	var chanProcess chan string = make(chan string, len(rows))
-	var chanDati chan *ToElaborate = make(chan *ToElaborate, len(rows))
+	var chanProcess = make(chan string, len(rows))
+	var chanDati = make(chan *ToElaborate, len(rows))
 
 	waitConsumer := &sync.WaitGroup{}
 	waitConsumer.Add(totalRoutine)
